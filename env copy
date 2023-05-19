@@ -1,0 +1,5 @@
+# Set up your database credentials
+host=''
+user=''
+password=''
+database='' 
