@@ -1,17 +1,21 @@
-const createModel=require('../models/createtask');
+const {create, getData}=require('../models/taskModel');
 // const conn=require('../db/connect')
-const getAllTasks=(req,res)=>{
-
-  res.send('God is always good');
+const getAllTasks=async(req,res,next)=>{
+  try {
+    await  getData(res);
+  } catch (error) {
+    next(error);
+  }
+ 
 }
 const createTask=(req,res)=>{
-  const sql='INSERT INTO task(`name`,`completed`) VALUES(?)';
+  // const sql='INSERT INTO task(`name`,`completed`) VALUES(?)';
   // res.json(req.body.name)
     const values=[
     req.body.name,
     req.body.completed,
   ]
-  createModel(values,res);
+  create(values,res);
 
 }
 const getTask=(req,res)=>{
