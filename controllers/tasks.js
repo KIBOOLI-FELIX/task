@@ -1,16 +1,14 @@
-const {create, getData}=require('../models/taskModel');
+const {create, getData, updateData, deleteData}=require('../models/taskModel');
 // const conn=require('../db/connect')
 const getAllTasks=async(req,res,next)=>{
   try {
     await  getData(res);
   } catch (error) {
-    next(error);
+    return next(error);
   }
  
 }
 const createTask=(req,res)=>{
-  // const sql='INSERT INTO task(`name`,`completed`) VALUES(?)';
-  // res.json(req.body.name)
     const values=[
     req.body.name,
     req.body.completed,
@@ -22,11 +20,25 @@ const getTask=(req,res)=>{
   res.json({id:req.params.id});
   
 }
-const updateTask=(req,res)=>{
-  res.send('God is exceedingly good');
+const updateTask=async(req,res,next)=>{
+  const id=req.params.id
+  const values=[
+    req.body.name,
+    req.body.completed
+  ]
+  try {
+    await updateData(values,id,res);
+  } catch (error) {
+    return next(error);
+  }
 }
-const deleteTask=(req,res)=>{
-  res.send('God is awesome');
+const deleteTask=async(req,res,next)=>{
+  const id=req.params.id;
+  try {
+    await deleteData(id,res);
+  } catch (error) {
+    return next(error);
+  }
 }
 module.exports={
   getAllTasks,
