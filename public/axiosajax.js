@@ -3,6 +3,12 @@ const loadingText=document.querySelector('.loading-text');
 const elForm=document.querySelector('.task-form');
 const elInput=document.querySelector('.taskInput');
 const elAlert = document.querySelector('.form-alert');
+const edit = document.querySelector('.edit');
+var myModal = new bootstrap.Modal(document.getElementById('editModel'), {
+  keyboard: true
+})
+// myModal.show();
+
 
 //getting tasks from the database
 const getTasks=async()=>{
@@ -22,16 +28,15 @@ getTasks();
 
 //function to list tasks
 const listTasks=(data)=>{
-  console.log(data);
   const allTasks=data.map((tasks)=>{
-    console.log(tasks);
+    // console.log(tasks);
     return `<div class='container'>
     <div class='row'>
       <div class='col-6'>
         <h5><span>${tasks.name}</span></h5>
       </div>
       <div class='col-6 d-flex justify-content-end'>
-        <a href='' class='btn btn-success btn-sm' role='button'>Edit</a>
+        <button class='btn btn-success btn-sm edit' id='edit' >Edit</button>
         <button type='button' class='btn btn-danger btn-sm'>Delete</a>
       </div>
     </div>
@@ -66,4 +71,8 @@ elForm.addEventListener('submit',async(event)=>{
   }, 3000)
 
 })
+
+
+// //editing task
+
 
