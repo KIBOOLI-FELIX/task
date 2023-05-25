@@ -2,18 +2,22 @@ const {create, getData, updateData, deleteData}=require('../models/taskModel');
 // const conn=require('../db/connect')
 const getAllTasks=async(req,res,next)=>{
   try {
-    await  getData(res);
+      getData(res);
   } catch (error) {
     return next(error);
   }
  
 }
-const createTask=(req,res)=>{
+const createTask=async(req,res,next)=>{
     const values=[
     req.body.name,
-    req.body.completed,
   ]
-  create(values,res);
+  try {
+    create(values,res);
+  } catch (error) {
+    return next(error)
+  }
+ 
 
 }
 const getTask=(req,res)=>{
@@ -27,7 +31,7 @@ const updateTask=async(req,res,next)=>{
     req.body.completed
   ]
   try {
-    await updateData(values,id,res);
+     updateData(values,id,res);
   } catch (error) {
     return next(error);
   }
@@ -35,7 +39,7 @@ const updateTask=async(req,res,next)=>{
 const deleteTask=async(req,res,next)=>{
   const id=req.params.id;
   try {
-    await deleteData(id,res);
+     deleteData(id,res);
   } catch (error) {
     return next(error);
   }

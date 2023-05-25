@@ -2,7 +2,7 @@ const conn=require('../db/connect')
 
 const create=(values,res)=>{
 //inserting into the database
-const sql='INSERT INTO task(`name`,`completed`) VALUES(?)';
+const sql='INSERT INTO task(`name`) VALUES(?)';
   conn.query(sql,[values],(err )=>{
     if(err)return res.status(500).json({Error:err});
     return res.status(201).json({success:'success'})
