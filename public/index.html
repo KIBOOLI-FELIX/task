@@ -31,7 +31,7 @@
           />
           </div>
           <div class="col-6">
-            <button type="submit" class="btn btn-primary btn-sm">Add Task</button>
+            <button type="submit" class="btn btn-primary btn-sm" id="btn">Add Task</button>
           </div>
         </div>
         <div class="form-alert"></div>
@@ -39,7 +39,9 @@
 
       <section class="tasks-container">
         <p class="loading-text">Loading...</p>
-        <div class="tasks"></div>
+        <div class="tasks">
+          
+        </div>
       </section>
     </div>
 
@@ -50,15 +52,35 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <h5 class="modal-title" id="staticBackdropLabel">Edit Task Form</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+        <form class="task-form-edit">
+          <h4 class=" text-center">Edit Task</h4>
+          <div class="row">
+            <div class="col-6">
+              <label for="Name">Name:</label>
+              <input
+              type="text"
+              name="name"
+              class="form-control taskName"
+              placeholder="e.g. Reading"
+            />
+            </div>
+            <div class="form-check col-6">
+              <label class="form-check-label" for="flexCheckChecked">
+                Completed
+              </label>
+              <input class="form-check-input taskComplete" type="checkbox" value="" id="flexCheckChecked">
+            </div>
+          </div>
+          <div class="form-alert"></div>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
+        <button type="button" class="btn btn-primary updateBtn">Update</button>
       </div>
     </div>
   </div>

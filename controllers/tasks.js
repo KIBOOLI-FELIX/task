@@ -1,4 +1,4 @@
-const {create, getData, updateData, deleteData}=require('../models/taskModel');
+const {create, getData, updateData, deleteData, getSingle}=require('../models/taskModel');
 // const conn=require('../db/connect')
 const getAllTasks=async(req,res,next)=>{
   try {
@@ -7,6 +7,14 @@ const getAllTasks=async(req,res,next)=>{
     return next(error);
   }
  
+}
+const getSingleTask=async(req,res,next)=>{
+  const id=req.params.id
+  try {
+    getSingle(res,id);
+  } catch (error) {
+    return next(error);
+  }
 }
 const createTask=async(req,res,next)=>{
     const values=[
@@ -19,10 +27,6 @@ const createTask=async(req,res,next)=>{
   }
  
 
-}
-const getTask=(req,res)=>{
-  res.json({id:req.params.id});
-  
 }
 const updateTask=async(req,res,next)=>{
   const id=req.params.id
@@ -46,8 +50,8 @@ const deleteTask=async(req,res,next)=>{
 }
 module.exports={
   getAllTasks,
+  getSingleTask,
   createTask,
-  getTask,
   updateTask,
   deleteTask
 }
